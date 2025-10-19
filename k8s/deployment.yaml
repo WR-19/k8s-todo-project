@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: todo-app
-        image: <ECR_URL_PLACEHOLDER>
+        image: 971614602252.dkr.ecr.us-west-2.amazonaws.com/k8s-todo-app
         ports:
         - containerPort: 5000
         livenessProbe:

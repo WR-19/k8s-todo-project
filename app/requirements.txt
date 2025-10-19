@@ -3,3 +3,4 @@ Flask==2.3.3
 # Retry deployment
 # Deployment successful!
 # Fix EKS access
+psycopg2-binary==2.9.7

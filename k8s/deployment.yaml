@@ -14,10 +14,29 @@ spec:
     spec:
       containers:
       - name: todo-app
-        image: 971614602252.dkr.ecr.us-west-2.amazonaws.com/k8s-todo-app
+        image: 971614602252.dkr.ecr.us-west-2.amazonaws.com/k8s-todo-app:latest
         ports:
         - containerPort: 5000
+        env:
+        - name: DB_HOST
+          value: "postgres-service"
+        - name: DB_NAME
+          value: "todo_db"
+        - name: DB_USER
+          value: "admin"
+        - name: DB_PASSWORD
+          value: "password123"
+        - name: DB_PORT
+          value: "5432"
         livenessProbe:
           httpGet:
             path: /health
             port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /todos
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 5
